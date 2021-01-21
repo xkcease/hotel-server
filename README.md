@@ -18,9 +18,11 @@ node app.js
 		
 ```
 
-## 功能
+## API
 1. 登录 
-2. to be continued
+2. 修改密码
+3. 获取用户信息
+4. to be continued
 
 
 
