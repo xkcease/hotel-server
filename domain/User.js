@@ -7,14 +7,23 @@ class User {
         this.idkey = idkey;
     }
 
-    toString() {
-        return `{ 
-            id: ${this.id}, 
-            username: ${this.username}, 
-            password: ${this.password},
-            permission: ${this.permission},
-            idkey: ${this.idkey}
-        }`
+    [Symbol.iterator]() {
+        const values = Object.values(this);
+        let index = 0;
+
+        return {
+            next: () => {
+                if (index < values.length) {
+                    return {
+                        value: values[index++],
+                        done: false
+                    };
+                }
+                else {
+                    return { value: undefined, done: true };
+                }
+            }
+        }
     }
 }
 
