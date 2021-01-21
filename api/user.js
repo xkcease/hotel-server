@@ -5,14 +5,19 @@ function queryAllUser() {
     return db.query(sql);
 }
 
-function queryAllUserByUsername(username) {
+function queryUserByUsername(username) {
     const sql = `select * from user where username = ?;`;
     return db.query(sql, [username]);
 }
 
-function insertUser(params) {
-    const sql = `insert into user(id, username, password, permission, idkey) values(null, ?, ?, ?, ?);`
-    return db.query(sql, params);
+function insertUser(user) {
+    const sql = `insert into user(id, username, password, permission, idkey) values(?, ?, ?, ?, ?);`
+    return db.query(sql, [...user]);
+}
+
+function updateUserPassword(password, username) {
+    const sql = `update user set password = ? where username = ?`;
+    return db.query(sql, [password, username])
 }
 
 function deleteUserByUsername(username) {
@@ -22,7 +27,8 @@ function deleteUserByUsername(username) {
 
 module.exports = {
     queryAllUser,
-    queryAllUserByUsername,
+    queryUserByUsername,
     insertUser,
+    updateUserPassword,
     deleteUserByUsername,
 };
