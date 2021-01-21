@@ -10,7 +10,7 @@ app.use((req, res, next) => {
         res.set({
             'Access-Control-Allow-Credentials': true,
             'Access-Control-Allow-Origin': 'http://localhost:9090' || 'http://localhost:9091',
-            'Access-Control-Allow-Headers': 'X-Requested-With,Content-Type',
+            'Access-Control-Allow-Headers': 'X-Requested-With,Content-Type,Authorization',
             'Access-Control-Allow-Methods': 'PUT,POST,GET,DELETE,OPTIONS',
             'Content-Type': 'application/json; charset=utf-8',
         })
@@ -24,7 +24,9 @@ app.use(bodyParser.json());
 
 
 app.use(require('./routes/login'));
-
+app.use(require('./module/tokenInterceptor'));
+app.use(require('./routes/userInfo'));
+app.use(require('./routes/updatePassword'));
 
 
 
