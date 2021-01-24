@@ -22,7 +22,10 @@ node app.js
 1. 登录 
 2. 修改密码
 3. 获取用户信息
-4. to be continued
+4. 添加新用户
+5. 修改权限
+6. 删除用户 
+7. to be continued
 
 
 
