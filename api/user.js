@@ -1,6 +1,6 @@
 const db = require('../db');
 
-function queryAllUser() {
+function queryAllUsers() {
     const sql = `select * from user;`;
     return db.query(sql);
 }
@@ -20,15 +20,21 @@ function updateUserPassword(password, username) {
     return db.query(sql, [password, username])
 }
 
+function updatePermission(username, permission) {
+    const sql = `update user set permission = ? where username = ?`;
+    return db.query(sql, [permission, username])
+}
+
 function deleteUserByUsername(username) {
     const sql = `delete from user where username = ?`;
     return db.query(sql, [username]);
 }
 
 module.exports = {
-    queryAllUser,
+    queryAllUsers,
     queryUserByUsername,
     insertUser,
     updateUserPassword,
+    updatePermission,
     deleteUserByUsername,
 };
