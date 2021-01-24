@@ -15,7 +15,8 @@ app.use((req, res, next) => {
             'Content-Type': 'application/json; charset=utf-8',
         })
     }
-    req.method === 'OPTIONS' ? res.status(204).end() : next()
+    // req.method === 'OPTIONS' ? res.status(204).end() : next()
+    next();
 })
 
 
@@ -23,10 +24,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-app.use(require('./routes/login'));
+app.use(require('./routes/user/login'));
 app.use(require('./module/tokenInterceptor'));
-app.use(require('./routes/userInfo'));
-app.use(require('./routes/updatePassword'));
+app.use(require('./routes/user/userInfo'));
+app.use(require('./routes/user/updatePassword'));
+app.use(require('./routes/user/register'));
+app.use(require('./routes/user/getUsers'));
+app.use(require('./routes/user/updatePermission'));
+app.use(require('./routes/user/deleteUser'));
 
 
 
