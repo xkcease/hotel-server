@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { updatePermission } = require('../api/user');
+const { updatePermission } = require('../../api/user');
 
 router.post('/updatePermission', (req, res) => {
     updatePermission(req.body.username, req.body.permission).then(result => {

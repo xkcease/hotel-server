@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { queryUserByUsername } = require('../api/user');
-const { getToken } = require('../module/jwt');
-const { encryptPasswordSync } = require('../module/encrypt');
+const { queryUserByUsername } = require('../../api/user');
+const { getToken } = require('../../module/jwt');
+const { encryptPasswordSync } = require('../../module/encrypt');
 
 
 router.post('/login', (req, res) => {

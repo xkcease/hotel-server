@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { queryUserByUsername } = require('../api/user');
+const { queryUserByUsername } = require('../../api/user');
 
 router.post('/userInfo', (req, res) => {
     const token = req.get('Authorization');

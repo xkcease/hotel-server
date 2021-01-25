@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { encryptPasswordSync } = require('../module/encrypt');
-const { validateUser } = require('../module/validator');
-const { insertUser, queryUserByUsername } = require('../api/user');
-const User = require('../domain/User');
+const { encryptPasswordSync } = require('../../module/encrypt');
+const { validateUser } = require('../../module/validator');
+const { insertUser, queryUserByUsername } = require('../../api/user');
+const User = require('../../domain/User');
 
 router.post('/register', (req, res) => {
     queryUserByUsername(req.body.username).then(result => {

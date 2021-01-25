@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { updateUserPassword, queryUserByUsername } = require('../api/user');
-const { encryptPasswordSync } = require('../module/encrypt');
-const { validatePassword } = require('../module/validator');
+const { updateUserPassword, queryUserByUsername } = require('../../api/user');
+const { encryptPasswordSync } = require('../../module/encrypt');
+const { validatePassword } = require('../../module/validator');
 
 router.post('/updatePassword', (req, res) => {
     queryUserByUsername(req.body.username).then(result => {

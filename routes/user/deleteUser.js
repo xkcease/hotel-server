@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { deleteUserByUsername } = require('../api/user');
+const { deleteUserByUsername } = require('../../api/user');
 
 router.post('/deleteUser', (req, res) => {
     deleteUserByUsername(req.body.username).then(result => {
