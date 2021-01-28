@@ -8,7 +8,7 @@ const { encryptPasswordSync } = require('../../module/encrypt');
 router.post('/login', (req, res) => {
     queryUserByUsername(req.body.username).then(result => {
         if (result.length && encryptPasswordSync(req.body.password) === result[0].password) {
-            const token = getToken(result[0].username);
+            const token = getToken({ username: result[0].username, permission: result[0].permission });
             res.json({ state: true, token });
         }
         else {
