@@ -1,6 +1,8 @@
 const usernameReg = /^[0-9A-Za-z]{2,20}$/;
 const passwordReg = /^\w{4,20}$/;
 const idkeyReg = /^[0-9A-Za-z]{4,20}$/;
+const roomNumberReg = /^[0-9A-Za-z]{3,8}$/;
+
 
 function validateUser({ username, password, idkey }) {
     if (!usernameReg.test(username)) {
@@ -30,10 +32,14 @@ function validateIdkey(idkey) {
     return idkeyReg.test(idkey);
 }
 
+function validateRoomNumber(number) {
+    return roomNumberReg.test(number);
+}
 
 module.exports = {
     validateUser,
     validateUsername,
     validatePassword,
     validateIdkey,
+    validateRoomNumber,
 }

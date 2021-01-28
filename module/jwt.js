@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const secretKey = 'hotel';
 
 function getToken(payload) {
-    return jwt.sign({ payload }, secretKey, { expiresIn: '1d' });
+    return jwt.sign({ ...payload }, secretKey, { expiresIn: '1d' });
 }
 
 function verifyToken(token) {
