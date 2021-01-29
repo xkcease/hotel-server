@@ -1,6 +1,6 @@
-class User {
-    constructor(id = null, username, password, permission, idkey) {
-        this.id = id;
+class Admin {
+    constructor(aid = null, username, password, permission, idkey) {
+        this.aid = aid;
         this.username = username;
         this.password = password;
         this.permission = permission;
@@ -27,4 +27,4 @@ class User {
     }
 }
 
-module.exports = User;
+module.exports = Admin;
