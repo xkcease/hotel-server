@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { queryUserByUsername } = require('../../api/user');
+const { queryAdminByUsername } = require('../../api/admin');
 const { getToken } = require('../../module/jwt');
 const { encryptPasswordSync } = require('../../module/encrypt');
 
 
 router.post('/login', (req, res) => {
-    queryUserByUsername(req.body.username).then(result => {
+    queryAdminByUsername(req.body.username).then(result => {
         if (result.length && encryptPasswordSync(req.body.password) === result[0].password) {
             const token = getToken({ username: result[0].username, permission: result[0].permission });
             res.json({ state: true, token });

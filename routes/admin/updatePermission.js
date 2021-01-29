@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { deleteUserByUsername } = require('../../api/user');
+const { updatePermission } = require('../../api/admin');
 
-router.post('/deleteUser', (req, res) => {
-    deleteUserByUsername(req.body.username).then(result => {
+router.post('/updatePermission', (req, res) => {
+    updatePermission(req.body.username, req.body.permission).then(result => {
         if (result.affectedRows) {
-            res.json({ state: true, msg: '删除成功' });
+            res.json({ state: true, msg: '修改成功' });
         }
         else {
             res.json({ state: false, msg: 'error' });

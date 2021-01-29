@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const { encryptPasswordSync } = require('../../module/encrypt');
 const { validateUser } = require('../../module/validator');
-const { insertUser, queryUserByUsername } = require('../../api/user');
-const User = require('../../domain/User');
+const { insertAdmin, queryAdminByUsername } = require('../../api/admin');
+const User = require('../../domain/Admin');
 
 router.post('/register', (req, res) => {
-    queryUserByUsername(req.body.username).then(result => {
+    queryAdminByUsername(req.body.username).then(result => {
         if (result.length <= 0) {
             const validation = validateUser(req.body);     // 校验
             if (!validation.state) {
@@ -14,7 +14,7 @@ router.post('/register', (req, res) => {
             }
 
             const user = new User(null, req.body.username, encryptPasswordSync(req.body.password), req.body.permission, req.body.idkey);
-            insertUser(user).then(() => {
+            insertAdmin(user).then(() => {
                 res.json({ state: true, msg: '注册成功' });
             }).catch(err => {
                 console.log(err);
