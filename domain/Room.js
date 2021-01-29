@@ -1,12 +1,13 @@
 class Room {
-    constructor(id = null, number, type, shower, tv, extra = '', img = '') {
-        this.id = id;
+    constructor(rid = null, number, type, shower, tv, extra = '', img = '', state = 0) {
+        this.rid = rid;
         this.number = number;
         this.type = type;
         this.shower = shower;
         this.tv = tv;
         this.extra = extra;
         this.img = img;
+        this.state = state;
     }
 
     [Symbol.iterator]() {
