@@ -2,7 +2,7 @@ const { verifyToken } = require('./jwt');
 
 const superPermission = 0;
 const seniorrPermission = 1;
-const superPermissionRoutes = ['/getUsers', '/register', '/updatePermission', '/deleteUser',];
+const superPermissionRoutes = ['/getAdmins', '/register', '/updatePermission', '/deleteAdmin',];
 const seniorPermissionRoutes = ['/addRoom', '/updateRoom', '/uploadImg', '/deleteRoom',];
 
 module.exports = function (req, res, next) {
