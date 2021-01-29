@@ -16,7 +16,7 @@ function queryRoomsByType(type) {
 }
 
 function insertRoom(room) {
-    const sql = `insert into room(id, number, type, shower, tv, extra, img) values(?, ?, ?, ?, ?, ?, ?)`;
+    const sql = `insert into room(rid, number, type, shower, tv, extra, img, state) values(?, ?, ?, ?, ?, ?, ?, ?)`;
     return db.query(sql, [...room]);
 }
 
@@ -28,6 +28,11 @@ function updateRoomByNumber(obj, number) {
 function updateRoomImgByNumber(img, number) {
     const sql = `update room set img = ? where number = ?`;
     return db.query(sql, [img, number]);
+}
+
+function updateRoomStateByNumber(state, number) {
+    const sql = `update room set state = ? where number = ?`;
+    return db.query(sql, [state, number]);
 }
 
 function deleteRoomByNumber(number) {
@@ -42,5 +47,6 @@ module.exports = {
     insertRoom,
     updateRoomByNumber,
     updateRoomImgByNumber,
+    updateRoomStateByNumber,
     deleteRoomByNumber,
 };
