@@ -2,6 +2,8 @@ const usernameReg = /^[0-9A-Za-z]{2,20}$/;
 const passwordReg = /^\w{4,20}$/;
 const idkeyReg = /^[0-9A-Za-z]{4,20}$/;
 const roomNumberReg = /^[0-9A-Za-z]{3,8}$/;
+const gidReg = /^[1-9]\d{5}(18|19|20|(3\d))\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+const priceReg = /^\d{1,8}$/;
 
 
 function validateUser({ username, password, idkey }) {
@@ -36,10 +38,20 @@ function validateRoomNumber(number) {
     return roomNumberReg.test(number);
 }
 
+function validateGid(gid) {
+    return gidReg.test(gid);
+}
+
+function validatePrice(price) {
+    return priceReg.test(price);
+}
+
 module.exports = {
     validateUser,
     validateUsername,
     validatePassword,
     validateIdkey,
     validateRoomNumber,
+    validateGid,
+    validatePrice,
 }
