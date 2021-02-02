@@ -23,17 +23,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-app.use(require('./routes/user/login'));
+app.use(require('./routes/admin/login'));
 
 app.use(require('./module/tokenInterceptor'));
-app.use(require('./module/permissionInterceptor'));
 
-app.use(require('./routes/user/userInfo'));
-app.use(require('./routes/user/updatePassword'));
-app.use(require('./routes/user/getUsers'));
-app.use(require('./routes/user/register'));
-app.use(require('./routes/user/updatePermission'));
-app.use(require('./routes/user/deleteUser'));
+app.use(require('./routes/order/checkIn'));
+app.use(require('./routes/order/checkOut'));
+app.use(require('./routes/order/getOrders'));
+app.use(require('./routes/order/getOrderInfo'));
+app.use(require('./routes/order/updateOrder'));
+app.use(require('./routes/order/deleteOrder'));
+
+app.use(require('./routes/price/getPrice'));
+
+app.use(require('./module/permissionInterceptor'));
 
 app.use(require('./routes/room/getRooms'));
 app.use(require('./routes/room/getRoomInfo'));
@@ -42,6 +45,13 @@ app.use(require('./routes/room/uploadImg'));
 app.use(require('./routes/room/updateRoom'));
 app.use(require('./routes/room/deleteRoom'));
 
+app.use(require('./routes/price/updatePrice'));
+app.use(require('./routes/admin/adminInfo'));
+app.use(require('./routes/admin/updatePassword'));
+app.use(require('./routes/admin/getAdmins'));
+app.use(require('./routes/admin/register'));
+app.use(require('./routes/admin/updatePermission'));
+app.use(require('./routes/admin/deleteAdmin'));
 
 
 
