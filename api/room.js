@@ -35,6 +35,11 @@ function updateRoomStateByNumber(state, number) {
     return db.query(sql, [state, number]);
 }
 
+function updateRoomStateByRid(state, rid) {
+    const sql = `update room set state = ? where rid = ?`;
+    return db.query(sql, [state, rid]);
+}
+
 function deleteRoomByNumber(number) {
     const sql = `delete from room where number = ?`;
     return db.query(sql, [number]);
@@ -48,5 +53,6 @@ module.exports = {
     updateRoomByNumber,
     updateRoomImgByNumber,
     updateRoomStateByNumber,
+    updateRoomStateByRid,
     deleteRoomByNumber,
 };
