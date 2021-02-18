@@ -19,9 +19,9 @@ module.exports = {
             state int(1) not null
         );`,
         room_order: `create table room_order(
-            oid bigint(18) not null primary key,
-            uid int(6),
-            rid int(8) not null,
+            oid varchar(20) not null primary key,
+            uid varchar(64),
+            rid int(8),
             place_time  bigint(18),
             reservation_time bigint(18) not null,
             reservation_during bigint(18) not null,
@@ -30,13 +30,34 @@ module.exports = {
             state int(1) not null
         );`,
         guest: `create table guest(
-            oid bigint(18) not null,
+            oid varchar(20) not null,
             gid varchar(18) not null,
             name varchar(50) not null
         );`,
         price: `create table price(
             type int(2) not null primary key,
             price int(8) not null
+        );`,
+        user: `create table user(
+            uid varchar(64) not null primary key,
+            phone varchar(11)
+        );`,
+        hotel_intro: `create table hotel_intro(
+            id int(1) not null primary key,
+            intro varchar(256),
+            options varchar(128),
+            address varchar(128),
+            contact varchar(11),
+            img varchar(256)
+        );`,
+        room_intro: `create table room_intro(
+            type int(2) not null primary key,
+            text varchar(32) not null,
+            shower int(1) not null,
+            tv int(1) not null,
+            window int(1) not null,
+            options varchar(128),
+            img varchar(256)
         );`,
     }
 };
