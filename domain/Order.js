@@ -1,5 +1,5 @@
 class Order {
-    constructor(oid, rid, uid = null, place_time, reservation_time, reservation_during, check_in_time, check_out_time, state) {
+    constructor(oid, rid, uid = null, place_time, reservation_time, reservation_during, check_in_time, check_out_time, state, type) {
         this.oid = oid;
         this.rid = rid;
         this.uid = uid;
@@ -9,6 +9,7 @@ class Order {
         this.check_in_time = check_in_time;
         this.check_out_time = check_out_time;
         this.state = state;
+        this.type = type;
     }
 
     [Symbol.iterator]() {
