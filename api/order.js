@@ -23,8 +23,8 @@ function queryReservedByUid(uid) {
 }
 
 function insertOrder(order) {
-    const sql = `insert into room_order(oid, rid, uid, place_time, reservation_time, reservation_during, check_in_time, check_out_time, state)
-                     values(?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    const sql = `insert into room_order(oid, rid, uid, place_time, reservation_time, reservation_during, check_in_time, check_out_time, state, type)
+                     values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
     return db.query(sql, [...order]);
 }
 
@@ -47,6 +47,7 @@ function deleteOrder(oid) {
     const sql = `delete from room_order where oid = ?`;
     return db.query(sql, [oid]);
 }
+
 
 module.exports = {
     queryAllOrders,
