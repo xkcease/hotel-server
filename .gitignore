@@ -2,7 +2,7 @@
 node_modules
 /own
 static
-
+weappConfig.js
 
 # local env files
 .env.local
