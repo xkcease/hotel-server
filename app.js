@@ -16,7 +16,7 @@ app.use((req, res, next) => {
         })
     }
     next();
-})
+});
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -26,6 +26,8 @@ app.use(bodyParser.json());
 app.use(require('./routes/user/getUser'));
 app.use(require('./routes/user/getPhone'));
 app.use(require('./routes/user/loginUser'));
+
+app.use(require('./routes/order/reserve'));
 
 app.use(require('./routes/price/getPrice'));
 
@@ -69,4 +71,4 @@ app.use(require('./routes/admin/deleteAdmin'));
 
 app.listen(9092, () => {
     console.log('server running http://localhost:9092');
-})
+});
