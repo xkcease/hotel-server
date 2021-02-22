@@ -8,7 +8,7 @@ const { insertGuest } = require('../../api/guest');
 const Order = require('../../domain/Order');
 const Guest = require('../../domain/Guest');
 
-
+// insertOrder 需修改， 业务逻辑已变
 router.post('/checkIn', async (req, res) => {
     let obj = req.body.obj;
     let guests = req.body.guests;
