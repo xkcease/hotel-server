@@ -2,8 +2,9 @@ const { verifyToken } = require('./jwt');
 
 const superPermission = 0;
 const seniorrPermission = 1;
-const superPermissionRoutes = ['/getAdmins', '/register', '/updatePermission', '/deleteAdmin',];
-const seniorPermissionRoutes = ['/addRoom', '/updateRoom', '/uploadImg', '/deleteRoom',];
+const superPermissionRoutes = ['/getAdmins', '/register', '/updatePermission', '/deleteAdmin', '/updatePrice'];
+const seniorPermissionRoutes = ['/addRoom', '/updateRoom', '/uploadImg', '/deleteRoom', '/uploadIntroImg',
+    '/updateRoomIntro', '/updateHotelIntro'];
 
 module.exports = function (req, res, next) {
     const token = req.get('Authorization');
