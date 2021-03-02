@@ -46,10 +46,12 @@ app.use(require('./routes/order/getOrderInfo'));
 app.use(require('./routes/order/updateOrder'));
 app.use(require('./routes/order/deleteOrder'));
 
-app.use(require('./module/permissionInterceptor'));
-
 app.use(require('./routes/room/getRooms'));
 app.use(require('./routes/room/getRoomInfo'));
+app.use(require('./routes/room/getRoomOptions'));
+
+app.use(require('./module/permissionInterceptor'));
+
 app.use(require('./routes/room/addRoom'));
 app.use(require('./routes/room/uploadImg'));
 app.use(require('./routes/room/updateRoom'));
