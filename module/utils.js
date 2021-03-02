@@ -30,7 +30,13 @@ function createSessionId() {
     return Date.now() + uuid(4);
 }
 
+function getHightBitOfNumber(value) {
+    const stringValue = '' + value;
+    return parseInt(stringValue.substr(0, 1));
+}
+
 module.exports = {
     createOid,
     createSessionId,
+    getHightBitOfNumber,
 }
