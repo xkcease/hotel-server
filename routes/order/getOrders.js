@@ -1,17 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const { queryAllOrders } = require('../../api/order');
+const { queryAllOrders, queryAllOrdersOwnRoom } = require('../../api/order');
 
 router.post('/getOrders', (req, res) => {
-    queryAllOrders().then(result => {
-        let list = result.filter(order => {
-            return order.state === req.body.state;
+    if (req.body.state === 0) {
+        queryAllOrders(req.body.state).then(result => {
+            res.json(result);
+        })
+    }
+    else {
+        queryAllOrdersOwnRoom(req.body.state).then(result => {
+            res.json(result);
+        }).catch(err => {
+            console.log(err);
         });
-
-        res.json(list);
-    }).catch(err => {
-        console.log(err);
-    });
+    }
 
 });
 

@@ -3,14 +3,15 @@ const router = express.Router();
 const { validateGid } = require('../../module/validator');
 const { createOid } = require('../../module/utils');
 const { queryRoomByNumber, updateRoomStateByNumber } = require('../../api/room');
-const { queryReservedByUid, insertOrder, checkInApi } = require('../../api/order');
+const { queryOrderByOid, insertOrder, checkInApi } = require('../../api/order');
 const { insertGuest } = require('../../api/guest');
 const Order = require('../../domain/Order');
 const Guest = require('../../domain/Guest');
 
-// insertOrder 需修改， 业务逻辑已变
+
 router.post('/checkIn', async (req, res) => {
     let obj = req.body.obj;
+    let contact = req.body.contact;
     let guests = req.body.guests;
 
     for (let guest of guests) {
@@ -22,13 +23,17 @@ router.post('/checkIn', async (req, res) => {
     // 已预定
     if (obj.uid) {
         try {
-            let result = await queryReservedByUid(obj.uid);
+            let result = await queryOrderByOid(obj.oid);
             if (result.length) {
-                await checkInApi({ check_in_time: obj.check_in_time, state: 1 }, result[0].oid);
+                await updateRoomStateByNumber(1, obj.number);
+
+                let roomResult = await queryRoomByNumber(obj.number);
+
+                await checkInApi({ rid: roomResult[0].rid, check_in_time: obj.check_in_time, state: 1 }, contact, obj.oid);
 
                 let values = [];
                 for (let guest of guests) {
-                    values.push([...new Guest(result[0].oid, guest.gid, guest.name)]);
+                    values.push([...new Guest(obj.oid, guest.gid, guest.name)]);
                 }
 
                 await insertGuest(values);
@@ -46,8 +51,10 @@ router.post('/checkIn', async (req, res) => {
             let result = await queryRoomByNumber(obj.number);
             if (result.length) {
                 await updateRoomStateByNumber(1, obj.number);
+
+
                 let order = new Order(createOid(), result[0].rid, null, obj.place_time, obj.reservation_time, obj.reservation_during,
-                    obj.check_in_time, null, 1);
+                    obj.check_in_time, null, 1, obj.type, contact);
 
                 await insertOrder(order);
 
