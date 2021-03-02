@@ -28,7 +28,8 @@ module.exports = {
             check_in_time bigint(18),
             check_out_time bigint(18),
             state int(1) not null,
-            type int(2) not null
+            type int(2) not null,
+            contact varchar(11)
         );`,
         guest: `create table guest(
             oid varchar(20) not null,
