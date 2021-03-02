@@ -2,7 +2,8 @@
 Node.js + Express
 
 该仓库为酒店预订系统的Node.js服务端，其前台微信小程序和Vue后台如下：
-> [微信小程序前台](https://github.com/xkcease/hotel-weapp)
+> [微信小程序前台](https://github.com/xkcease/hotel-weapp)  
+
 > [Vue后台](https://github.com/xkcease/hotel-management)
 
 ## 技术栈
@@ -125,6 +126,7 @@ hotel-server
 │  │      deleteRoom.js
 │  │      getRoomInfo.js
 │  │      getRooms.js
+│  │ 	  getRoomOptions.js
 │  │      updateRoom.js
 │  │      uploadImg.js
 │  │
