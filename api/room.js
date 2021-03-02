@@ -15,6 +15,11 @@ function queryRoomsByType(type) {
     return db.query(sql, [type]);
 }
 
+function queryRoomsByTypeAndState(type, state) {
+    const sql = `select* from room where type = ? and state = ?`;
+    return db.query(sql, [type, state]);
+}
+
 function insertRoom(room) {
     const sql = `insert into room(rid, number, type, shower, tv, extra, img, state) values(?, ?, ?, ?, ?, ?, ?, ?)`;
     return db.query(sql, [...room]);
@@ -49,6 +54,7 @@ module.exports = {
     queryAllRooms,
     queryRoomByNumber,
     queryRoomsByType,
+    queryRoomsByTypeAndState,
     insertRoom,
     updateRoomByNumber,
     updateRoomImgByNumber,
