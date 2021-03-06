@@ -5,7 +5,9 @@ const { getHightBitOfNumber } = require('../../module/utils');
 
 function addOptionsForNumber(option, number, prefix = '') {
     const hn = getHightBitOfNumber(number);
-    const index = option.indexOf(hn);
+    const index = option.findIndex(obj => {
+        return obj.value === hn;
+    });
 
     if (index === -1) {
         option.push({
@@ -18,7 +20,7 @@ function addOptionsForNumber(option, number, prefix = '') {
         });
     }
     else {
-        option[index].push({
+        option[index].children.push({
             value: prefix + number,
             label: prefix + number,
         });

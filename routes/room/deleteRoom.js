@@ -7,7 +7,7 @@ const { queryRoomByNumber, deleteRoomByNumber } = require('../../api/room');
 router.post('/deleteRoom', async (req, res) => {
     try {
         let result = await queryRoomByNumber(req.body.number);
-        console.log(result);
+
         if (result.length && result[0].state === 1) {
             return res.json({ state: false, msg: '此房间已被预订，暂不可删除' });
         }
