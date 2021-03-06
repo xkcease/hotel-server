@@ -1,6 +1,10 @@
 const path = require('path');
 const express = require('express');
 const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server, {
+    cors: true
+});
 const bodyParser = require('body-parser');
 
 app.use(express.static(path.join(__dirname, './static')));
@@ -27,7 +31,9 @@ app.use(require('./routes/user/getUser'));
 app.use(require('./routes/user/getPhone'));
 app.use(require('./routes/user/loginUser'));
 
-app.use(require('./routes/order/reserve'));
+app.use(require('./routes/order/reserve')(io));
+app.use(require('./routes/order/getUserOrders'));
+app.use(require('./routes/order/deleteOrder'));
 
 app.use(require('./routes/price/getPrice'));
 
@@ -44,7 +50,6 @@ app.use(require('./routes/order/checkOut'));
 app.use(require('./routes/order/getOrders'));
 app.use(require('./routes/order/getOrderInfo'));
 app.use(require('./routes/order/updateOrder'));
-app.use(require('./routes/order/deleteOrder'));
 
 app.use(require('./routes/room/getRooms'));
 app.use(require('./routes/room/getRoomInfo'));
@@ -71,6 +76,6 @@ app.use(require('./routes/admin/deleteAdmin'));
 
 
 
-app.listen(9092, () => {
+server.listen(9092, () => {
     console.log('server running http://localhost:9092');
 });
