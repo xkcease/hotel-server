@@ -18,8 +18,16 @@ function queryOrderByOid(oid) {
 }
 
 function queryOrderByUid(uid) {
-    const sql = `select * from room_order where uid = ?`;
+    const sql = `select ri.*, p.price, ro.* from price p, room_intro ri, room_order ro where p.type = ri.type and ro.type = ri.type
+        and ro.uid = ?`;
     return db.query(sql, [uid]);
+}
+
+function queryOrderByUidAndState(uid, state) {
+    // const sql = `select * from room_order where uid = ? and state = ?`;
+    const sql = `select ri.*, p.price, ro.* from price p, room_intro ri, room_order ro where p.type = ri.type and ro.type = ri.type
+        and ro.uid = ? and ro.state = ?`;
+    return db.query(sql, [uid, state]);
 }
 
 function queryReservedByUid(uid) {
@@ -70,6 +78,7 @@ module.exports = {
     queryAllOrdersOwnRoom,
     queryOrderByOid,
     queryOrderByUid,
+    queryOrderByUidAndState,
     queryReservedByUid,
     insertOrder,
     insertSomeOrders,
