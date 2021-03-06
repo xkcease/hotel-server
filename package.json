@@ -16,6 +16,7 @@
         "formidable": "^1.2.2",
         "jsonwebtoken": "^8.5.1",
         "mysql": "^2.18.1",
-        "node-mysql": "^0.4.2"
+        "node-mysql": "^0.4.2",
+        "socket.io": "^3.1.2"
     }
 }
