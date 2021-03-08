@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { createOid } = require('../../module/utils');
-const { insertSomeOrders, updateUserOrderByOid } = require('../../api/order');
+const { insertOrder, updateUserOrderByOid, queryOrderByTypeAndTime } = require('../../api/order');
+const { queryRoomsByTypeAndState } = require('../../api/room');
 const Order = require('../../domain/Order');
 const cache = require('../../module/cache');
 
@@ -9,21 +10,25 @@ module.exports = function (io) {
     router.post('/reserve', async (req, res) => {
         let obj = req.body;
 
-        let values = [];
-        let orderArray = [];
-        let user = cache.get(req.body.sessionId);
+        const reservedOrders = await queryOrderByTypeAndTime(obj.reservation_time, obj.reservation_during, obj.type);
+        const vacantRooms = await queryRoomsByTypeAndState(obj.type, 0);
+        const availableNumber = vacantRooms.length - reservedOrders.length;
+
+        if (obj.number > availableNumber) {
+            return res.json({ state: false, msg: '该时段只剩' + availableNumber + '间空房' });
+        }
 
         try {
-            if (!obj.oid) {
-                for (let i = 0; i < obj.number; i++) {
-                    let order = new Order(createOid(), null, user.uid, Date.now(), obj.reservation_time, obj.reservation_during,
-                        null, null, 0, obj.type, obj.phone);
+            if (!obj.oid) {                        // 添加订单
+                let orderArray = [];
+                let user = cache.get(req.body.sessionId);
 
-                    values.push([...order]);
-                    orderArray.push(order);
-                }
+                let order = new Order(createOid(), null, user.uid, Date.now(), obj.reservation_time, obj.reservation_during,
+                    null, null, 0, obj.type, obj.phone, obj.number);
 
-                let result = await insertSomeOrders(values);
+                orderArray.push(order);
+
+                let result = await insertOrder(order);
                 if (result.affectedRows) {
                     res.json({ state: true, msg: '预订成功' });
                     io.emit('new-order', { orderArray });
@@ -32,8 +37,8 @@ module.exports = function (io) {
                     res.json({ state: false, msg: 'error' });
                 }
             }
-            else {
-                updateUserOrderByOid(obj.reservation_time, obj.reservation_during, obj.phone, obj.oid).then(() => {
+            else {              // 修改订单
+                updateUserOrderByOid(obj.reservation_time, obj.reservation_during, obj.phone, obj.number, obj.oid).then(() => {
                     res.json({ state: true, msg: '修改成功' });
                 }).catch(err => {
                     console.log(err);

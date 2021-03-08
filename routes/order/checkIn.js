@@ -54,7 +54,7 @@ router.post('/checkIn', async (req, res) => {
 
 
                 let order = new Order(createOid(), result[0].rid, null, obj.place_time, obj.reservation_time, obj.reservation_during,
-                    obj.check_in_time, null, 1, obj.type, contact);
+                    obj.check_in_time, null, 1, obj.type, contact, 1);
 
                 await insertOrder(order);
 
