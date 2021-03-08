@@ -46,13 +46,18 @@ node app.js
 21. 获取用户手机号
 22. 获取酒店详情
 23. 获取房间详情
-24. to be continued
+24. 修改酒店详情
+25. 修改房间详情
+26. 预订
+27. 获取用户订单
+28. to be continued
 
 ## 目录
 ```shell
 hotel-server
 │  .gitignore
 │  app.js
+│  LICENSE
 │  package-lock.json
 │  package.json
 │  README.md
@@ -114,6 +119,8 @@ hotel-server
 │  │      deleteOrder.js
 │  │      getOrderInfo.js
 │  │      getOrders.js
+│  │      getUserOrder.js
+│  │	  getUserOrders.js
 │  │      reserve.js
 │  │      updateOrder.js
 │  │
@@ -125,8 +132,8 @@ hotel-server
 │  │      addRoom.js
 │  │      deleteRoom.js
 │  │      getRoomInfo.js
-│  │      getRooms.js
 │  │ 	  getRoomOptions.js
+│  │      getRooms.js
 │  │      updateRoom.js
 │  │      uploadImg.js
 │  │
