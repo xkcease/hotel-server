@@ -23,8 +23,13 @@ function queryOrderByUid(uid) {
     return db.query(sql, [uid]);
 }
 
+function queryOrderByUidAndOid(uid, oid) {
+    const sql = `select ri.*, p.price, ro.* from price p, room_intro ri, room_order ro where p.type = ri.type and ro.type = ri.type
+        and ro.uid = ? and ro.oid = ?`;
+    return db.query(sql, [uid, oid]);
+}
+
 function queryOrderByUidAndState(uid, state) {
-    // const sql = `select * from room_order where uid = ? and state = ?`;
     const sql = `select ri.*, p.price, ro.* from price p, room_intro ri, room_order ro where p.type = ri.type and ro.type = ri.type
         and ro.uid = ? and ro.state = ?`;
     return db.query(sql, [uid, state]);
@@ -50,6 +55,11 @@ function insertSomeOrders(values) {
 function updateOrderByOid(reservation_time, reservation_during, oid) {
     const sql = `update room_order set reservation_time = ?, reservation_during = ? where oid = ?`;
     return db.query(sql, [reservation_time, reservation_during, oid]);
+}
+
+function updateUserOrderByOid(reservation_time, reservation_during, contact, oid) {
+    const sql = `update room_order set reservation_time = ?, reservation_during = ?, contact = ? where oid = ?`;
+    return db.query(sql, [reservation_time, reservation_during, contact, oid]);
 }
 
 function updateOrderOwnTypeByOid(reservation_time, reservation_during, type, oid) {
@@ -78,11 +88,13 @@ module.exports = {
     queryAllOrdersOwnRoom,
     queryOrderByOid,
     queryOrderByUid,
+    queryOrderByUidAndOid,
     queryOrderByUidAndState,
     queryReservedByUid,
     insertOrder,
     insertSomeOrders,
     updateOrderByOid,
+    updateUserOrderByOid,
     updateOrderOwnTypeByOid,
     checkInApi,
     checkOutApi,

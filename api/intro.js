@@ -6,12 +6,12 @@ function queryHotelIntro() {
 }
 
 function insertHotelIntro(hotelIntro) {
-    const sql = `insert into hotel_intro(id, intro, options, address, contact, img) values(?, ?, ?, ?, ?, ?)`;
+    const sql = `insert into hotel_intro(id, name, intro, options, address, contact, img) values(?, ?, ?, ?, ?, ?, ?)`;
     return db.query(sql, [...hotelIntro]);
 }
 
 function updateHotelIntro(obj, id) {
-    const sql = `update hotel_intro set intro = ?, options = ?, address = ?, contact = ? where id = ?`;
+    const sql = `update hotel_intro set name = ?, intro = ?, options = ?, address = ?, contact = ? where id = ?`;
     return db.query(sql, [...obj, id]);
 }
 
@@ -31,7 +31,7 @@ function queryRoomIntroByType(type) {
 }
 
 function insertRoomIntro(roomIntro) {
-    const sql = `insert into room_intro(type, text, shower, tv, window, options, img) values(?, ?, ?, ?, ?, ?, ?)`;
+    const sql = `insert into room_intro(type, text, shower, tv, window, options, img, intro) values(?, ?, ?, ?, ?, ?, ?, ?)`;
     return db.query(sql, [...roomIntro]);
 }
 
@@ -41,7 +41,7 @@ function updateRoomIntroImgByType(img, type) {
 }
 
 function updateRoomIntroByType(obj, type) {
-    const sql = `update room_intro set text = ?, shower = ?, tv = ?, window = ?, options = ? where type = ?`;
+    const sql = `update room_intro set text = ?, shower = ?, tv = ?, window = ?, options = ?, intro = ? where type = ?`;
     return db.query(sql, [...obj, type]);
 }
 
