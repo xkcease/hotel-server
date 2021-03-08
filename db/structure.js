@@ -46,10 +46,11 @@ module.exports = {
         );`,
         hotel_intro: `create table hotel_intro(
             id int(1) not null primary key,
+            name varchar(32) not null,
             intro varchar(256),
             options varchar(128),
-            address varchar(128),
-            contact varchar(11),
+            address varchar(128) not null,
+            contact varchar(11) not null,
             img varchar(256)
         );`,
         room_intro: `create table room_intro(
@@ -59,7 +60,8 @@ module.exports = {
             tv int(1) not null,
             window int(1) not null,
             options varchar(128),
-            img varchar(256)
+            img varchar(256),
+            intro varchar(256)
         );`,
     }
 };
