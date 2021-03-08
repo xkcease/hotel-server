@@ -32,6 +32,7 @@ app.use(require('./routes/user/getPhone'));
 app.use(require('./routes/user/loginUser'));
 
 app.use(require('./routes/order/reserve')(io));
+app.use(require('./routes/order/getUserOrder'));
 app.use(require('./routes/order/getUserOrders'));
 app.use(require('./routes/order/deleteOrder'));
 
