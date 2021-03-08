@@ -5,7 +5,7 @@ const HotelIntro = require('../../domain/HotelIntro');
 
 router.post('/updateHotelIntro', async (req, res) => {
     try {
-        const hotelIntro = new HotelIntro(1, req.body.intro, req.body.options, req.body.address, req.body.contact, '');
+        const hotelIntro = new HotelIntro(1, req.body.name, req.body.intro, req.body.options, req.body.address, req.body.contact, '');
 
         let result = await queryHotelIntro();
         if (result.length) {                    // 更新

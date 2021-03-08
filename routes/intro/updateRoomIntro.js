@@ -5,7 +5,7 @@ const RoomIntro = require('../../domain/RoomIntro');
 
 router.post('/updateRoomIntro', async (req, res) => {
     try {
-        const roomIntro = new RoomIntro(req.body.type, req.body.text, req.body.shower, req.body.tv, req.body.window, req.body.options, '');
+        const roomIntro = new RoomIntro(req.body.type, req.body.text, req.body.shower, req.body.tv, req.body.window, req.body.options, '', req.body.intro);
 
         let result = await queryRoomIntroByType(req.body.type);
         if (result.length) {                    // 更新
