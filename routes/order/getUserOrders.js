@@ -16,7 +16,6 @@ router.get('/getUserOrders', (req, res) => {
     }
     else {
         queryOrderByUid(user.uid).then(result => {
-            console.log(result);
             res.json(result);
         }).catch(err => {
             console.log(err);
