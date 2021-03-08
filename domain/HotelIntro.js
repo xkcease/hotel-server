@@ -1,6 +1,7 @@
 class HotelIntro {
-    constructor(id = 1, intro, options, address, contact, img) {
+    constructor(id = 1, name, intro, options, address, contact, img) {
         this.id = id;
+        this.name = name;
         this.intro = intro;
         this.options = options;
         this.address = address;

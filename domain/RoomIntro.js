@@ -1,5 +1,5 @@
 class RoomIntro {
-    constructor(type, text, shower, tv, window, options, img) {
+    constructor(type, text, shower, tv, window, options, img, intro) {
         this.type = type;
         this.text = text;
         this.shower = shower;
@@ -7,6 +7,7 @@ class RoomIntro {
         this.window = window;
         this.options = options;
         this.img = img;
+        this.intro = intro;
     }
 
     [Symbol.iterator]() {
