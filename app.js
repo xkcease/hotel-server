@@ -52,6 +52,8 @@ app.use(require('./routes/order/getOrders'));
 app.use(require('./routes/order/getOrderInfo'));
 app.use(require('./routes/order/updateOrder'));
 
+app.use(require('./routes/guest/getGuests'));
+
 app.use(require('./routes/room/getRooms'));
 app.use(require('./routes/room/getRoomInfo'));
 app.use(require('./routes/room/getRoomOptions'));
