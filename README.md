@@ -50,7 +50,7 @@ node app.js
 25. 修改房间详情
 26. 预订
 27. 获取用户订单
-28. to be continued
+
 
 ## 目录
 ```shell
@@ -104,6 +104,9 @@ hotel-server
 │  │      register.js
 │  │      updatePassword.js
 │  │      updatePermission.js
+│  │
+│  ├─guest
+│  │      getGuests.js
 │  │
 │  ├─intro
 │  │      getAllRoomIntros.js
