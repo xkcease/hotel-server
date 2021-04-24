@@ -27,7 +27,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-app.use(require('./routes/user/getUser'));
 app.use(require('./routes/user/getPhone'));
 app.use(require('./routes/user/loginUser'));
 
